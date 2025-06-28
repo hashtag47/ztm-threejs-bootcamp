@@ -5,12 +5,27 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 const scene = new THREE.Scene();
 
 // add objects to the scene
-const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+
+// const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
+// const geometry = new THREE.SphereGeometry(1, 10, 10);
+// const geometry = new THREE.PlaneGeometry(1, 1, 2, 2);
+const geometry = new THREE.TorusKnotGeometry(10, 2, 20, 20);
+
+// create custom geometry : buffer geometry : to set the point of intersection
+// const vertices = new Float32Array([0, 0, 0, 0, 2, 0, 2, 0, 0]);
+
+// const bufferAttribute = new THREE.BufferAttribute(vertices, 3);
+
+// const geometry = new THREE.BufferGeometry();
+// geometry.setAttribute("position", bufferAttribute);
+
 const cubeMaterial = new THREE.MeshBasicMaterial({
   color: "red",
   wireframe: true,
 });
-const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+const cubeMesh = new THREE.Mesh(geometry, cubeMaterial);
 
 scene.add(cubeMesh);
 
@@ -55,7 +70,7 @@ const renderloop = () => {
   previousTime = currentTime;
 
   cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 30;
-  cubeMesh.scale.setScalar(Math.sin(currentTime) + 1);
+  // cubeMesh.scale.setScalar(Math.sin(currentTime) + 1);
   // console.log(delta);
 
   // console.log(clock.getElapsedTime());
